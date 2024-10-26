@@ -1,0 +1,53 @@
+﻿@model WebPruebaAfecor.ViewModels.UsuarioVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Regístrate</h4>
+                    </div>
+                    <div class="card-body">
+                        <form asp-controller="Acceso" asp-action="Registrarse" method="post">
+                            <div class="form-group mb-3">
+                                <input class="form-control" type="text" placeholder="Nombre Completo" required asp-for="Nombre" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" type="email" placeholder="Correo" required asp-for="Correo" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" type="password" placeholder="Contraseña" required asp-for="Clave" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" type="password" placeholder="Confirmar Contraseña" required asp-for="ConfirmarClave" />
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-primary" type="submit">Registrarse</button>
+                            </div>
+                            @if (ViewData["Mensaje"] != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @ViewData["Mensaje"]
+                                </div>
+                            }
+                            <p class="text-center">¿Ya tienes una cuenta? <a asp-controller="Acceso" asp-action="Login">Inicia sesión</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

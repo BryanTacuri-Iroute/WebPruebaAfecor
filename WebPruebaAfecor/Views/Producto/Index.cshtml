@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebPruebaAfecor.Models.Producto>
+@{
+    ViewData["Title"] = "Listado de Productos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+        <h2>Productos</h2>
+        <a asp-action="Crear" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> Agregar Producto
+        </a>
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar productos..." id="searchInput" onkeyup="searchTable()" />
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model)
+            {
+                <tr>
+                    <td>@producto.IdProducto</td>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Marca</td>
+                    <td>$@producto.Precio</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@producto.IdProducto" class="btn btn-primary btn-sm">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a asp-action="Eliminar" asp-route-id="@producto.IdProducto" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function searchTable() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toUpperCase();
+        var table = document.querySelector("table");
+        var tr = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < tr.length; i++) {
+            var td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                var textValue = td.textContent || td.innerText;
+                tr[i].style.display = textValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+    }
+</script>

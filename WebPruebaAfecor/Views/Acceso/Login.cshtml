@@ -1,0 +1,49 @@
+﻿@model WebPruebaAfecor.ViewModels.LoginVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Iniciar Sesión</h4>
+                    </div>
+                    <div class="card-body">
+                        <form asp-controller="Acceso" asp-action="Login" method="post">
+                            <div class="form-group mb-3">
+                                <input class="form-control" type="email" placeholder="Correo" required asp-for="Correo" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" type="password" placeholder="Contraseña" required asp-for="Clave" />
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                            </div>
+                            @if (ViewData["Mensaje"] != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @ViewData["Mensaje"]
+                                </div>
+                            }
+                            <p class="text-center">¿No tienes una cuenta? <a asp-controller="Acceso" asp-action="Registrarse">Regístrate aquí</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

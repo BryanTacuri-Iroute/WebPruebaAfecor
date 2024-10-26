@@ -1,0 +1,24 @@
+﻿@model WebPruebaAfecor.Models.Producto
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<div class="container mt-4">
+    <h2>Eliminar Producto</h2>
+    <hr />
+    <h4>¿Está seguro de que desea eliminar el producto?</h4>
+    <dl class="row">
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">@Model.Nombre</dd>
+        <dt class="col-sm-3">Marca</dt>
+        <dd class="col-sm-9">@Model.Marca</dd>
+        <dt class="col-sm-3">Precio</dt>
+        <dd class="col-sm-9">$@Model.Precio</dd>
+    </dl>
+    <form asp-action="Eliminar" method="post">
+        <input type="hidden" asp-for="IdProducto" />
+        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Confirmar</button>
+        <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Cancelar</a>
+    </form>
+
+</div>
